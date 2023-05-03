@@ -1,0 +1,44 @@
+name: travelogue_app
+description: A new Flutter project.
+version: 1.0.0+1
+environment: 
+  sdk: '>=2.12.0 <3.0.0'
+dependencies: 
+  flutter: 
+    sdk: flutter
+  provider: ^6.0.5
+  cached_network_image: ^3.2.1
+  flutter_svg: ^1.1.6
+  flutter_svg_provider: ^1.0.3
+  intl: ^0.17.0
+dev_dependencies: 
+  flutter_test: 
+    sdk: flutter
+flutter: 
+  uses-material-design: true
+  assets: 
+    - assets/
+    - assets/images/
+  fonts: 
+    - family: Source Sans Pro
+      fonts: 
+        - asset: assets/fonts/SourceSansProSemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/SourceSansProRegular.ttf
+          weight: 400
+        - asset: assets/fonts/SourceSansProBold.ttf
+          weight: 700
+        - asset: assets/fonts/SourceSansProSemiBoldItalic.ttf
+          weight: 600
+    - family: Boogaloo
+      fonts: 
+        - asset: assets/fonts/BoogalooRegular.ttf
+          weight: 400
+    - family: Source Code Pro
+      fonts: 
+        - asset: assets/fonts/SourceCodeProRomanMedium.ttf
+          weight: 500
+    - family: Koulen
+      fonts: 
+        - asset: assets/fonts/KoulenRegular.ttf
+          weight: 400
