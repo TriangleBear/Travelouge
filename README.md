@@ -1,2 +1,2 @@
 
-# travelogue_app
+# Travelouge
