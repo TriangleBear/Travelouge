@@ -15,7 +15,6 @@ class UploadPhotoTwoScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Expanded(
-                          child: SingleChildScrollView(
                               child: Container(
                                   height: size.height,
                                   width: double.maxFinite,
@@ -26,8 +25,8 @@ class UploadPhotoTwoScreen extends StatelessWidget {
                                             alignment: Alignment.bottomCenter,
                                             child: Container(
                                                 height: getVerticalSize(657),
-                                                width: double.maxFinite,
-                                                margin: getMargin(bottom: 41),
+                                                width: getHorizontalSize(400),
+                                                margin: getMargin(top:160,bottom: 45),
                                                 child: Stack(
                                                     alignment: Alignment.center,
                                                     children: [
@@ -95,7 +94,7 @@ class UploadPhotoTwoScreen extends StatelessWidget {
                                         Align(
                                             alignment: Alignment.topCenter,
                                             child: Container(
-                                                height: getVerticalSize(146),
+                                                height: getVerticalSize(160),
                                                 width: double.maxFinite,
                                                 child: Stack(
                                                     alignment:
@@ -107,7 +106,7 @@ class UploadPhotoTwoScreen extends StatelessWidget {
                                                                   .imgPinkwave,
                                                           height:
                                                               getVerticalSize(
-                                                                  146),
+                                                                  160),
                                                           width:
                                                               getHorizontalSize(
                                                                   390),
@@ -217,9 +216,9 @@ class UploadPhotoTwoScreen extends StatelessWidget {
                                                               getHorizontalSize(
                                                                   367),
                                                           margin: getMargin(
-                                                              top: 11),
+                                                              top: 20),
                                                           child: Text(
-                                                              "We stayed at a overwater bungalow, which offered\n spectacular views of the lagoon and the nearby \nsmall islands. The bungalow was spacious, \ncomfortable and provided a true sense of privacy \nand serenity.\n\nOne of the highlights of our trip was a snorkeling \nexcursion to the coral gardens, where we got up \nclose and personal with a variety of colorful fish \nand other marine life. We also went on a shark and\nray feeding adventure, which was both thrilling \nand educational.\n\nIn the evenings, we indulged in the local cuisine \nand were pleasantly surprised by the fresh \nseafood, tropical fruits and traditional dishes. \n\nOverall, our trip to Bora Bora was unforgettable \nand we can't wait to return to this tropical \nparadise in the future.",
+                                                              "We stayed at a overwater bungalow, which offered spectacular views of the lagoon and the nearby small islands. The bungalow was spacious, comfortable and \nprovided a true sense of privacy and serenity.\n\nOne of the highlights of our trip was a snorkeling excursion to the coral gardens, where we got up close and personal with a variety of colorful fish and other marine life. We also went on a shark and ray feeding adventure, which was both thrilling and educational.\n\nIn the evenings, we indulged in the local cuisine and were pleasantly surprised by the fresh seafood, tropical fruits and traditional dishes. \n\nOverall, our trip to Bora Bora was unforgettable and we can't wait to return to this tropical paradise in the future.",
                                                               maxLines: null,
                                                               textAlign:
                                                                   TextAlign
@@ -235,21 +234,20 @@ class UploadPhotoTwoScreen extends StatelessWidget {
                                                 },
                                                 child: Padding(
                                                     padding: getPadding(
-                                                        right: 33, bottom: 1),
+                                                        right: 33, bottom: 5),
                                                     child: Text("Aa",
                                                         overflow: TextOverflow
                                                             .ellipsis,
                                                         textAlign:
-                                                            TextAlign.left,
+                                                        TextAlign.left,
                                                         style: AppStyle
                                                             .txtBoogalooRegular30)))),
                                         CustomImageView(
-                                            imagePath:
-                                                ImageConstant.imgLists141x59,
-                                            height: getVerticalSize(41),
-                                            width: getHorizontalSize(59),
+                                            imagePath: ImageConstant.imgLists1,
+                                            height: getSize(65),
+                                            width: getSize(65),
                                             alignment: Alignment.bottomLeft,
-                                            margin: getMargin(left: 28),
+                                            margin: getMargin(top: 795,left: 20),
                                             onTap: () {
                                               onTapImgListsone(context);
                                             }),
@@ -258,10 +256,11 @@ class UploadPhotoTwoScreen extends StatelessWidget {
                                             height: getSize(50),
                                             width: getSize(50),
                                             alignment: Alignment.bottomCenter,
+                                            margin: getMargin(top: 800),
                                             onTap: () {
                                               onTapImgCamone(context);
                                             })
-                                      ]))))
+                                      ])))
                     ]))));
   }
 

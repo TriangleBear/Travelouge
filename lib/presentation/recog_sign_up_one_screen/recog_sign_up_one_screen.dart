@@ -15,9 +15,9 @@ class RecogSignUpOneScreen extends StatelessWidget {
                     children: [
                       CustomImageView(
                           imagePath: ImageConstant.imgFaceidentification39x371,
-                          height: getVerticalSize(39),
-                          width: getHorizontalSize(371),
-                          margin: getMargin(left: 10, top: 34)),
+                          height: getVerticalSize(42),
+                          width: getHorizontalSize(372),
+                          margin: getMargin(left: 10, top: 31)),
                       CustomImageView(
                           imagePath: ImageConstant.imgLogin69x195,
                           height: getVerticalSize(69),
@@ -67,7 +67,7 @@ class RecogSignUpOneScreen extends StatelessWidget {
                             Align(
                                 alignment: Alignment.center,
                                 child: Container(
-                                    height: getVerticalSize(262),
+                                    height: getVerticalSize(270),
                                     width: double.maxFinite,
                                     child: Stack(
                                         alignment: Alignment.bottomLeft,
@@ -75,7 +75,7 @@ class RecogSignUpOneScreen extends StatelessWidget {
                                           CustomImageView(
                                               imagePath:
                                                   ImageConstant.imgWavepink,
-                                              height: getVerticalSize(262),
+                                              height: getVerticalSize(270),
                                               width: getHorizontalSize(390),
                                               alignment: Alignment.center),
                                           CustomImageView(

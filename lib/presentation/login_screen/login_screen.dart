@@ -14,7 +14,7 @@ class LoginScreen extends StatelessWidget {
                     children: [
                       CustomImageView(
                           imagePath: ImageConstant.imgTravelogue,
-                          height: getVerticalSize(57),
+                          height: getVerticalSize(62),
                           width: getHorizontalSize(324),
                           margin: getMargin(top: 30)),
                       CustomImageView(
@@ -34,7 +34,7 @@ class LoginScreen extends StatelessWidget {
                           }),
                       Container(
                           margin: getMargin(left: 40, top: 13, right: 37),
-                          padding: getPadding(top: 19, bottom: 19),
+                          padding: getPadding(top: 19, bottom: 10),
                           decoration: AppDecoration.outlineTeal300.copyWith(
                               borderRadius: BorderRadiusStyle.roundedBorder27),
                           child: Column(
@@ -91,14 +91,14 @@ class LoginScreen extends StatelessWidget {
                                         children: [
                                           Padding(
                                               padding: getPadding(
-                                                  top: 34, bottom: 15),
+                                                  top: 34, bottom: 14),
                                               child: SizedBox(
                                                   width: getHorizontalSize(110),
                                                   child: Divider(
                                                       height:
                                                           getVerticalSize(1),
                                                       thickness:
-                                                          getVerticalSize(1),
+                                                          getVerticalSize(1.5),
                                                       color: ColorConstant
                                                           .teal30001))),
                                           Container(
@@ -141,7 +141,7 @@ class LoginScreen extends StatelessWidget {
                                                       height:
                                                           getVerticalSize(1),
                                                       thickness:
-                                                          getVerticalSize(1),
+                                                          getVerticalSize(1.5),
                                                       color: ColorConstant
                                                           .teal30001)))
                                         ])),

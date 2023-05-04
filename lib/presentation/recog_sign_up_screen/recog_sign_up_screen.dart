@@ -14,13 +14,13 @@ class RecogSignUpScreen extends StatelessWidget {
                     children: [
                       CustomImageView(
                           imagePath: ImageConstant.imgCompletesetup,
-                          height: getVerticalSize(175),
-                          width: getHorizontalSize(324),
-                          margin: getMargin(top: 29)),
+                          height: getVerticalSize(180),
+                          width: getHorizontalSize(300),
+                          margin: getMargin(top: 25)),
                       Container(
                           margin: getMargin(left: 39, top: 21, right: 38),
                           padding: getPadding(
-                              left: 14, top: 8, right: 14, bottom: 8),
+                              left: 14, top: 8, right: 14, bottom: 12),
                           decoration: AppDecoration.outlineTeal300.copyWith(
                               borderRadius: BorderRadiusStyle.roundedBorder27),
                           child: Column(
@@ -96,14 +96,14 @@ class RecogSignUpScreen extends StatelessWidget {
                                     })
                               ])),
                       Container(
-                          height: getVerticalSize(219),
+                          height: getVerticalSize(200),
                           width: double.maxFinite,
                           child:
                               Stack(alignment: Alignment.bottomLeft, children: [
                             CustomImageView(
                                 imagePath: ImageConstant.imgWaveblue,
-                                height: getVerticalSize(219),
-                                width: getHorizontalSize(390),
+                                height: getVerticalSize(210),
+                                width: getHorizontalSize(387),
                                 alignment: Alignment.center),
                             CustomImageView(
                                 imagePath: ImageConstant.imgArrow,

@@ -14,7 +14,7 @@ class ProfileScreen extends StatelessWidget {
                     children: [
                       CustomImageView(
                           imagePath: ImageConstant.imgTravelogue,
-                          height: getVerticalSize(57),
+                          height: getVerticalSize(62),
                           width: getHorizontalSize(324),
                           margin: getMargin(top: 30)),
                       CustomImageView(
@@ -139,7 +139,7 @@ class ProfileScreen extends StatelessWidget {
                             Align(
                                 alignment: Alignment.bottomCenter,
                                 child: Container(
-                                    height: getVerticalSize(156),
+                                    height: getVerticalSize(165),
                                     width: double.maxFinite,
                                     child: Stack(
                                         alignment: Alignment.bottomLeft,
@@ -147,7 +147,7 @@ class ProfileScreen extends StatelessWidget {
                                           CustomImageView(
                                               imagePath: ImageConstant
                                                   .imgWavepink156x390,
-                                              height: getVerticalSize(156),
+                                              height: getVerticalSize(165),
                                               width: getHorizontalSize(390),
                                               alignment: Alignment.center),
                                           CustomImageView(
@@ -170,8 +170,9 @@ class ProfileScreen extends StatelessWidget {
                           ])),
                       CustomImageView(
                           imagePath: ImageConstant.imgEditprofile,
-                          height: getVerticalSize(36),
+                          height: getVerticalSize(34),
                           width: getHorizontalSize(390),
+                          margin: getMargin(top:1.8),
                           onTap: () {
                             onTapImgEditprofile(context);
                           })

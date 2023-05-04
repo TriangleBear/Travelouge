@@ -14,7 +14,7 @@ class SignUpScreen extends StatelessWidget {
                     children: [
                       CustomImageView(
                           imagePath: ImageConstant.imgTravelogue,
-                          height: getVerticalSize(57),
+                          height: getVerticalSize(62),
                           width: getHorizontalSize(324),
                           margin: getMargin(top: 30)),
                       CustomImageView(
@@ -155,7 +155,7 @@ class SignUpScreen extends StatelessWidget {
                                 CustomImageView(
                                     imagePath: ImageConstant.imgWavecircle,
                                     height: getVerticalSize(185),
-                                    width: getHorizontalSize(192),
+                                    width: getHorizontalSize(187),
                                     alignment: Alignment.centerLeft),
                                 Align(
                                     alignment: Alignment.centerRight,
@@ -175,7 +175,7 @@ class SignUpScreen extends StatelessWidget {
                                                       height:
                                                           getVerticalSize(1),
                                                       thickness:
-                                                          getVerticalSize(1),
+                                                          getVerticalSize(1.5),
                                                       color: ColorConstant
                                                           .teal30002))),
                                           Container(
@@ -222,7 +222,7 @@ class SignUpScreen extends StatelessWidget {
                                                       height:
                                                           getVerticalSize(1),
                                                       thickness:
-                                                          getVerticalSize(1),
+                                                          getVerticalSize(1.5),
                                                       color: ColorConstant
                                                           .teal30002,
                                                       indent: getHorizontalSize(

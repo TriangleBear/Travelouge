@@ -14,9 +14,9 @@ class RecogLoginScreen extends StatelessWidget {
                     children: [
                       CustomImageView(
                           imagePath: ImageConstant.imgFaceidentification,
-                          height: getVerticalSize(40),
-                          width: getHorizontalSize(370),
-                          margin: getMargin(top: 33)),
+                          height: getVerticalSize(42),
+                          width: getHorizontalSize(355),
+                          margin: getMargin(top: 31)),
                       CustomImageView(
                           imagePath: ImageConstant.imgLogin,
                           height: getVerticalSize(69),
@@ -43,7 +43,7 @@ class RecogLoginScreen extends StatelessWidget {
                               height: getSize(249),
                               width: getSize(249),
                               padding: getPadding(
-                                  left: 55, top: 42, right: 55, bottom: 42),
+                                  left: 51, top: 42, right: 51, bottom: 42),
                               decoration: AppDecoration.fillDeeporange100
                                   .copyWith(
                                       borderRadius:

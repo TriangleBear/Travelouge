@@ -50,7 +50,7 @@ class NotesDisplayScreen extends StatelessWidget {
                                                             getHorizontalSize(
                                                                 157),
                                                         margin: getMargin(
-                                                            top: 11,
+                                                            top: 45,
                                                             bottom: 11)),
                                                     GestureDetector(
                                                         onTap: () {
@@ -60,9 +60,9 @@ class NotesDisplayScreen extends StatelessWidget {
                                                             clipBehavior:
                                                                 Clip.antiAlias,
                                                             elevation: 0,
-                                                            margin:
-                                                                EdgeInsets.all(
-                                                                    0),
+                                                            margin:getMargin(
+                                                                top: 45,
+                                                                bottom: 11),
                                                             color: ColorConstant
                                                                 .blueGray200,
                                                             shape: RoundedRectangleBorder(
@@ -100,7 +100,8 @@ class NotesDisplayScreen extends StatelessWidget {
                                                                           width: getSize(
                                                                               44),
                                                                           alignment:
-                                                                              Alignment.centerRight)
+                                                                              Alignment.centerRight,
+                                                                      )
                                                                     ]))))
                                                   ])),
                                           Expanded(
