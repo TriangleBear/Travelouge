@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "447932252499",
+    "project_id": "travelouge-9e143",
+    "storage_bucket": "travelouge-9e143.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:447932252499:android:6376795b9c514d04d5e1a6",
+        "android_client_info": {
+          "package_name": "com.travelogueapp.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "447932252499-p8qp5kooe6r365gojd9102k256q2rfl4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHXqwIw1sRX1BcfP2tZZgdUtymoNE8oJw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "447932252499-p8qp5kooe6r365gojd9102k256q2rfl4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
