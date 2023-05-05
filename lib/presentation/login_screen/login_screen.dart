@@ -44,7 +44,7 @@ class LoginScreen extends StatelessWidget {
                                 Align(
                                     alignment: Alignment.centerLeft,
                                     child: Padding(
-                                        padding: getPadding(left: 18, top: 12),
+                                        padding: getPadding(left: 18, top: 34),
                                         child: Text("Enter Username",
                                             overflow: TextOverflow.ellipsis,
                                             textAlign: TextAlign.left,
@@ -60,7 +60,7 @@ class LoginScreen extends StatelessWidget {
                                 Align(
                                     alignment: Alignment.centerLeft,
                                     child: Padding(
-                                        padding: getPadding(left: 18, top: 17),
+                                        padding: getPadding(left: 18, top: 34),
                                         child: Text("Enter Password",
                                             overflow: TextOverflow.ellipsis,
                                             textAlign: TextAlign.left,
@@ -77,89 +77,16 @@ class LoginScreen extends StatelessWidget {
                                     imagePath: ImageConstant.imgLoginbutton,
                                     height: getVerticalSize(26),
                                     width: getHorizontalSize(114),
-                                    margin: getMargin(top: 26),
+                                    margin: getMargin(top: 35, bottom: 35),
                                     onTap: () {
                                       onTapImgLoginbutton(context);
                                     }),
-                                Padding(
-                                    padding: getPadding(top: 14),
-                                    child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
-                                        children: [
-                                          Padding(
-                                              padding: getPadding(
-                                                  top: 34, bottom: 14),
-                                              child: SizedBox(
-                                                  width: getHorizontalSize(110),
-                                                  child: Divider(
-                                                      height:
-                                                          getVerticalSize(1),
-                                                      thickness:
-                                                          getVerticalSize(1.5),
-                                                      color: ColorConstant
-                                                          .teal30001))),
-                                          Container(
-                                              height: getVerticalSize(50),
-                                              width: getHorizontalSize(86),
-                                              child: Stack(
-                                                  alignment:
-                                                      Alignment.bottomCenter,
-                                                  children: [
-                                                    Align(
-                                                        alignment:
-                                                            Alignment.topCenter,
-                                                        child: Text("Or",
-                                                            overflow:
-                                                                TextOverflow
-                                                                    .ellipsis,
-                                                            textAlign:
-                                                                TextAlign.left,
-                                                            style: AppStyle
-                                                                .txtBoogalooRegular22)),
-                                                    Align(
-                                                        alignment: Alignment
-                                                            .bottomCenter,
-                                                        child: Text(
-                                                            "Login using ",
-                                                            overflow:
-                                                                TextOverflow
-                                                                    .ellipsis,
-                                                            textAlign:
-                                                                TextAlign.left,
-                                                            style: AppStyle
-                                                                .txtBoogalooRegular22))
-                                                  ])),
-                                          Padding(
-                                              padding: getPadding(
-                                                  top: 34, bottom: 14),
-                                              child: SizedBox(
-                                                  width: getHorizontalSize(110),
-                                                  child: Divider(
-                                                      height:
-                                                          getVerticalSize(1),
-                                                      thickness:
-                                                          getVerticalSize(1.5),
-                                                      color: ColorConstant
-                                                          .teal30001)))
-                                        ])),
-                                CustomImageView(
-                                    imagePath: ImageConstant.imgRecog,
-                                    height: getSize(44),
-                                    width: getSize(44),
-                                    radius: BorderRadius.circular(
-                                        getHorizontalSize(17)),
-                                    margin: getMargin(top: 6),
-                                    onTap: () {
-                                      onTapImgRecog(context);
-                                    })
                               ])),
                       CustomImageView(
                           imagePath: ImageConstant.imgWave1,
                           height: getVerticalSize(226),
-                          width: getHorizontalSize(360))
+                          width: getHorizontalSize(360),
+                          margin:getMargin(top: 20))
                     ]))));
   }
 
@@ -169,9 +96,5 @@ class LoginScreen extends StatelessWidget {
 
   onTapImgLoginbutton(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.notesDisplayScreen);
-  }
-
-  onTapImgRecog(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.recogLoginScreen);
   }
 }
