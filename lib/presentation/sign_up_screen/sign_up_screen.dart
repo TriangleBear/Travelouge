@@ -160,91 +160,18 @@ class SignUpScreen extends StatelessWidget {
                                 Align(
                                     alignment: Alignment.centerRight,
                                     child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Padding(
-                                              padding: getPadding(
-                                                  top: 36, bottom: 16),
-                                              child: SizedBox(
-                                                  width: getHorizontalSize(50),
-                                                  child: Divider(
-                                                      height:
-                                                          getVerticalSize(1),
-                                                      thickness:
-                                                          getVerticalSize(1.5),
-                                                      color: ColorConstant
-                                                          .teal30002))),
-                                          Container(
-                                              height: getVerticalSize(54),
-                                              width: getHorizontalSize(103),
-                                              margin: getMargin(left: 11),
-                                              child: Stack(
-                                                  alignment: Alignment.topRight,
-                                                  children: [
-                                                    Align(
-                                                        alignment: Alignment
-                                                            .bottomCenter,
-                                                        child: Text(
-                                                            "Signup using ",
-                                                            overflow:
-                                                                TextOverflow
-                                                                    .ellipsis,
-                                                            textAlign:
-                                                                TextAlign.left,
-                                                            style: AppStyle
-                                                                .txtBoogalooRegular23)),
-                                                    Align(
-                                                        alignment:
-                                                            Alignment.topRight,
-                                                        child: Padding(
-                                                            padding: getPadding(
-                                                                right: 36),
-                                                            child: Text("Or",
-                                                                overflow:
-                                                                    TextOverflow
-                                                                        .ellipsis,
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .left,
-                                                                style: AppStyle
-                                                                    .txtBoogalooRegular25)))
-                                                  ])),
-                                          Padding(
-                                              padding: getPadding(
-                                                  top: 37, bottom: 15),
-                                              child: SizedBox(
-                                                  width: getHorizontalSize(58),
-                                                  child: Divider(
-                                                      height:
-                                                          getVerticalSize(1),
-                                                      thickness:
-                                                          getVerticalSize(1.5),
-                                                      color: ColorConstant
-                                                          .teal30002,
-                                                      indent: getHorizontalSize(
-                                                          7))))
-                                        ])),
-                                CustomImageView(
-                                    imagePath: ImageConstant.imgRecog,
-                                    height: getSize(40),
-                                    width: getSize(40),
-                                    radius: BorderRadius.circular(
-                                        getHorizontalSize(17)),
-                                    alignment: Alignment.bottomRight,
-                                    margin: getMargin(right: 88, bottom: 19),
-                                    onTap: () {
-                                      onTapImgRecog(context);
-                                    }),
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                      CrossAxisAlignment.end,
+                                      mainAxisSize: MainAxisSize.min,
+                                    )),
                                 CustomImageView(
                                     imagePath: ImageConstant.imgSignupbutton,
                                     height: getVerticalSize(30),
                                     width: getHorizontalSize(132),
                                     alignment: Alignment.topRight,
-                                    margin: getMargin(top: 8, right: 53),
+                                    margin: getMargin(top: 20, right: 53),
                                     onTap: () {
                                       onTapImgSignupbutton(context);
                                     })

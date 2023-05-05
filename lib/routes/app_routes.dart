@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:travelogue_app/presentation/login_screen/login_screen.dart';
-import 'package:travelogue_app/presentation/recog_login_screen/recog_login_screen.dart';
 import 'package:travelogue_app/presentation/sign_up_screen/sign_up_screen.dart';
-import 'package:travelogue_app/presentation/recog_sign_up_one_screen/recog_sign_up_one_screen.dart';
-import 'package:travelogue_app/presentation/recog_sign_up_screen/recog_sign_up_screen.dart';
 import 'package:travelogue_app/presentation/notes_display_screen/notes_display_screen.dart';
 import 'package:travelogue_app/presentation/create_notes_screen/create_notes_screen.dart';
 import 'package:travelogue_app/presentation/upload_photo_screen/upload_photo_screen.dart';
@@ -51,10 +48,7 @@ class AppRoutes {
 
   static Map<String, WidgetBuilder> routes = {
     loginScreen: (context) => LoginScreen(),
-    recogLoginScreen: (context) => RecogLoginScreen(),
     signUpScreen: (context) => SignUpScreen(),
-    recogSignUpOneScreen: (context) => RecogSignUpOneScreen(),
-    recogSignUpScreen: (context) => RecogSignUpScreen(),
     notesDisplayScreen: (context) => NotesDisplayScreen(),
     createNotesScreen: (context) => CreateNotesScreen(),
     uploadPhotoScreen: (context) => UploadPhotoScreen(),
