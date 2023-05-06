@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:travelogue_app/core/app_export.dart';
 
@@ -6,11 +8,11 @@ class LoginScreen extends StatefulWidget {
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
+
 class _LoginScreenState extends State<LoginScreen> {
   TextEditingController _usernameController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   bool _showPassword = false; // initial value of obscureText
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -135,6 +137,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           margin:getMargin(top: 20))
                     ])))));
   }
+
 
   onTapImgSignup(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.signUpScreen);
