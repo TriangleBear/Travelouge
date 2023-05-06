@@ -12,7 +12,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController _usernameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
-  bool _showPassword = false; // initial value of obscureText
+  bool _showPassword = true; // initial value of obscureText
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -182,17 +182,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     height: 35.0,
                                     width: 300.0,
                                     child: TextField(
-                                      obscureText: !_showPassword,
+                                      obscureText: _showPassword,
                                       controller: _passwordController,
                                       decoration: InputDecoration(
                                           suffixIcon: IconButton(
                                             icon: Icon(
-                                              _showPassword ? Icons.visibility : Icons.visibility_off,
+                                              _showPassword ? Icons.visibility_off : Icons.visibility,
                                               color: Colors.white,
                                             ),
                                             onPressed: () {
                                               setState(() {
-                                                _showPassword = _showPassword; // toggle the value
+                                                _showPassword = !_showPassword; // toggle the value
                                               });},
                                           ),
                                           fillColor: Color(0xff4c9c9e),
