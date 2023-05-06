@@ -12,12 +12,8 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   TextEditingController _usernameController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
-<<<<<<< HEAD
-  bool _showPassword = false; // initial value of obscureText
-=======
   bool _showPassword = true; // initial value of obscureText
 
->>>>>>> testing-for-kat
   @override
   Widget build(BuildContext context) {
     return SafeArea(
