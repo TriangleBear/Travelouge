@@ -95,19 +95,19 @@ class _LoginScreenState extends State<LoginScreen> {
                                     height: 34.0,
                                     width: 300.0,
                                     child: TextField(
-                                      obscureText: _showPassword,
+                                      obscureText: !_showPassword,
                                       controller: _passwordController,
                                       decoration: InputDecoration(
-                                        suffixIcon: IconButton(
-                                          icon: Icon(
-                                            _showPassword ? Icons.visibility : Icons.visibility_off,
-                                            color: Colors.white,
+                                          suffixIcon: IconButton(
+                                            icon: Icon(
+                                              _showPassword ? Icons.visibility : Icons.visibility_off,
+                                              color: Colors.white,
+                                            ),
+                                            onPressed: () {
+                                              setState(() {
+                                                _showPassword = _showPassword; // toggle the value
+                                              });},
                                           ),
-                                          onPressed: () {
-                                            setState(() {
-                                              _showPassword = !_showPassword; // toggle the value
-                                            });},
-                                        ),
                                           fillColor: Color(0xff4c9c9e),
                                           filled: true,
                                           border: OutlineInputBorder(
@@ -115,6 +115,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                             borderSide: BorderSide.none, // Removes the border color
                                           )
                                       ),
+
                                     ),
                                   ),
                                 ),

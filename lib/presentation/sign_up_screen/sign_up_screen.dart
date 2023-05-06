@@ -182,7 +182,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     height: 35.0,
                                     width: 300.0,
                                     child: TextField(
-                                      obscureText: _showPassword,
+                                      obscureText: !_showPassword,
                                       controller: _passwordController,
                                       decoration: InputDecoration(
                                           suffixIcon: IconButton(
@@ -192,7 +192,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                             ),
                                             onPressed: () {
                                               setState(() {
-                                                _showPassword = !_showPassword; // toggle the value
+                                                _showPassword = _showPassword; // toggle the value
                                               });},
                                           ),
                                           fillColor: Color(0xff4c9c9e),
