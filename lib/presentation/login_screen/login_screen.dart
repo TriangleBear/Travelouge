@@ -12,6 +12,7 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController _usernameController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   bool _showPassword = true; // initial value of obscureText
+  
   @override
   Widget build(BuildContext context) {
     return SafeArea(
