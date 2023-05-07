@@ -138,6 +138,26 @@ class _LoginScreenState extends State<LoginScreen> {
                           margin:getMargin(top: 20))
                     ])))));
   }
+  Widget _buildPopupDialogError(BuildContext context) {
+    return new AlertDialog(
+      title: const Text('Error'),
+      content: new Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text("Wrong user or pass"),
+        ],
+      ),
+      actions: <Widget>[
+        new ElevatedButton(
+          onPressed: () {
+            Navigator.pushNamed(context, AppRoutes.loginScreen);
+          },
+          child: const Text('Close'),
+        ),
+      ],
+    );
+  }
   onTapImgSignup(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.signUpScreen);
   }
@@ -161,25 +181,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
 
   }
-  Widget _buildPopupDialogError(BuildContext context) {
-    return new AlertDialog(
-      title: const Text('Error'),
-      content: new Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text("Wrong user or pass"),
-        ],
-      ),
-      actions: <Widget>[
-        new ElevatedButton(
-          onPressed: () {
-            Navigator.pushNamed(context, AppRoutes.loginScreen);
-          },
-          child: const Text('Close'),
-        ),
-      ],
-    );
-  }
+
 
 }
