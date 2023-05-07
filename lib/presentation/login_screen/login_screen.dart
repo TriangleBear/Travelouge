@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:travelogue_app/core/app_export.dart';
 
@@ -13,7 +14,6 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController _usernameController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   bool _showPassword = true; // initial value of obscureText
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -138,13 +138,48 @@ class _LoginScreenState extends State<LoginScreen> {
                           margin:getMargin(top: 20))
                     ])))));
   }
-
-
   onTapImgSignup(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.signUpScreen);
   }
 
-  onTapImgLoginbutton(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.notesDisplayScreen);
+  void onTapImgLoginbutton(BuildContext context) async {
+    final querySnapshot = await FirebaseFirestore.instance.collection('users').where('userName', isEqualTo: _usernameController.text).get();
+
+    if(querySnapshot.docs.isNotEmpty){
+      final userDoc = querySnapshot.docs.first;
+      final userPass = userDoc.get('userPass');
+
+      if(userPass != _passwordController.text){
+        _buildPopupDialogError(context);
+      } else {
+        print('Successfully Logged in');
+        Navigator.pushNamed(context, AppRoutes.notesDisplayScreen);
+      }
+    } else {
+      _buildPopupDialogError(context);
+    }
+
+
   }
+  Widget _buildPopupDialogError(BuildContext context) {
+    return new AlertDialog(
+      title: const Text('Error'),
+      content: new Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text("Wrong user or pass"),
+        ],
+      ),
+      actions: <Widget>[
+        new ElevatedButton(
+          onPressed: () {
+            Navigator.pushNamed(context, AppRoutes.loginScreen);
+          },
+          child: const Text('Close'),
+        ),
+      ],
+    );
+  }
+
 }
