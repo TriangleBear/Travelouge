@@ -18,6 +18,7 @@ class _CreateNotesScreenState extends State<CreateNotesScreen> {
         child: Scaffold(
             backgroundColor: Colors.transparent,
             extendBodyBehindAppBar: true,
+            resizeToAvoidBottomInset: false,
             body: Container(
                 decoration: BoxDecoration(
                   image: DecorationImage(
@@ -100,7 +101,7 @@ class _CreateNotesScreenState extends State<CreateNotesScreen> {
                                                             .teal300A7)))),
 
                                         Container(
-                                          padding: getPadding(left: 10, top: 66, right: 13),
+                                          padding: getPadding(left: 10, top: 70, right: 13),
                                           child: Column(
                                               mainAxisSize:
                                               MainAxisSize.min,
@@ -111,34 +112,52 @@ class _CreateNotesScreenState extends State<CreateNotesScreen> {
                                               MainAxisAlignment.start,
                                               children: [
                                                 Padding(
-                                                  padding: getPadding(left:5,),
+                                                  padding: getPadding(left:5),
                                                   child: SizedBox(
                                                     height: 45,
                                                     child: TextField(
                                                         controller: _noteTitle,
-                                                        style: AppStyle.txtBoogalooRegular40
+                                                        style: AppStyle.txtBoogalooRegular40,
+                                                      decoration: InputDecoration(
+                                                        hintText: "Title",
+                                                        hintStyle: AppStyle.hintBoogalooRegular40,
+                                                        border: InputBorder.none,
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: getPadding(top:10,left:5,),
+                                                  padding: getPadding(top:5,left:5,),
                                                   child: SizedBox(
                                                     height: 30,
                                                     child: TextField(
                                                         controller: _noteDate,
-                                                        style: AppStyle.txtBoogalooRegular28
+                                                        style: AppStyle.txtBoogalooRegular28,
+                                                      decoration: InputDecoration(
+                                                        hintText: "Date",
+                                                        hintStyle: AppStyle.hintBoogalooRegular28,
+                                                        border: InputBorder.none,
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: getPadding(top:10,left:5,),
+                                                  padding: getPadding(left:5,),
                                                   child: SizedBox(
-                                                    height: 400,
+                                                    height: 651,
                                                     child: TextField(
                                                         controller: _noteContent,
                                                         keyboardType: TextInputType.multiline,
                                                         maxLines: null,
-                                                        style: AppStyle.txtSourceSansProRegular175
+                                                        style: AppStyle.txtSourceSansProRegular175,
+                                                      decoration: InputDecoration(
+                                                        hintText: "Type your Text Here",
+                                                        border: InputBorder.none,
+                                                        focusedBorder: InputBorder.none,
+                                                        enabledBorder: InputBorder.none,
+                                                        errorBorder: InputBorder.none,
+                                                        disabledBorder: InputBorder.none,
+                                                      ),
                                                     ),
                                                   ),
                                                 ),

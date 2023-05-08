@@ -10,6 +10,22 @@ class AppStyle {
     fontFamily: 'Boogaloo',
     fontWeight: FontWeight.w400,
   );
+  static TextStyle hintBoogalooRegular40 = TextStyle(
+    color: ColorConstant.teal700,
+    fontSize: getFontSize(
+      40,
+    ),
+    fontFamily: 'Boogaloo',
+    fontWeight: FontWeight.w400,
+  );
+  static TextStyle hintBoogalooRegular28 = TextStyle(
+    color: ColorConstant.teal700,
+    fontSize: getFontSize(
+      28,
+    ),
+    fontFamily: 'Boogaloo',
+    fontWeight: FontWeight.w400,
+  );
 
   static TextStyle txtBoogalooRegular30 = TextStyle(
     color: ColorConstant.teal900,
