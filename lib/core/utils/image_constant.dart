@@ -75,7 +75,7 @@ class ImageConstant {
 
   static String imgRecog = 'assets/images/img_recog.png';
 
-  static String imgLists1 = 'assets/images/img_lists1.png';
+  static String imgLists1 = 'assets/images/imgBold.png';
 
   static String imgUploadbutton = 'assets/images/img_uploadbutton.png';
 

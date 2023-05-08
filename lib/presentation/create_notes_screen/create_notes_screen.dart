@@ -18,6 +18,7 @@ class _CreateNotesScreenState extends State<CreateNotesScreen> {
   TextEditingController _noteDate = TextEditingController();
   bool _isVisible = false;
   double _fontSize = 18;
+  bool _isBold = false;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -156,7 +157,7 @@ class _CreateNotesScreenState extends State<CreateNotesScreen> {
                                                         keyboardType: TextInputType.multiline,
                                                         maxLines: null,
                                                         style:TextStyle(
-
+                                                          fontWeight: _isBold?FontWeight.bold : FontWeight.normal,
                                                           fontSize: _fontSize,
                                                         ),
                                                       decoration: InputDecoration(
@@ -208,14 +209,16 @@ class _CreateNotesScreenState extends State<CreateNotesScreen> {
                                                   alignment: Alignment.bottomRight,
                                                   child: GestureDetector(
                                                       onTap: () {
-                                                        onTapImgCamone(context);
+                                                        setState(() {
+                                                          _isBold = !_isBold;
+                                                        });
                                                       },
                                                       child: CustomImageView(
                                                         imagePath: ImageConstant.imgLists1,
-                                                        height: getSize(65),
-                                                        width: getSize(65),
+                                                        height: getSize(35),
+                                                        width: getSize(20),
                                                         alignment: Alignment.bottomLeft,
-                                                        margin: getMargin(top:800,left: 20),
+                                                        margin: getMargin(left: 45, bottom: 2),
                                                       ))
                                               ),
                                               Align(
@@ -294,10 +297,6 @@ class _CreateNotesScreenState extends State<CreateNotesScreen> {
     await FirebaseFirestore.instance.collection('users').doc(currentUserName).collection('userNotes').add(addNotes);
     showDialog(context: context, builder: (BuildContext context) => _buildPopupDialog(context));
     Navigator.pushNamed(context, AppRoutes.notesDisplayScreen);
-  }
-
-  onTapTxtAa(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.resizeTextScreen);
   }
 
   onTapImgListsone(BuildContext context) {
