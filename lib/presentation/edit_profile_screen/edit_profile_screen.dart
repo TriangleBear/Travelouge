@@ -12,7 +12,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   TextEditingController _firstnameController = TextEditingController();
   TextEditingController _lastnameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
-  final CollectionReference _users = FirebaseFirestore.instance.collection('users');
   @override
   Widget build(BuildContext context) {
     return SafeArea(

@@ -1,23 +1,27 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cupertino_date_textbox/cupertino_date_textbox.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/single_child_widget.dart';
 import 'package:travelogue_app/core/app_export.dart';
 import 'package:travelogue_app/presentation/login_screen/login_screen.dart';
 import 'package:travelogue_app/presentation/sign_up_screen/sign_up_screen.dart';
 import 'package:travelogue_app/widgets/app_bar/appbar_image.dart';
 import 'package:travelogue_app/widgets/app_bar/custom_app_bar.dart';
 
+
 class CreateNotesScreen extends StatefulWidget {
   @override
   State<CreateNotesScreen> createState() => _CreateNotesScreenState();
 }
-
 class _CreateNotesScreenState extends State<CreateNotesScreen> {
   TextEditingController _noteTitle = TextEditingController();
   TextEditingController _noteContent = TextEditingController();
   TextEditingController _noteDate = TextEditingController();
   DateTime _selectedDateTime = DateTime.now();
   DateTime currentDate = DateTime.now();
+  bool _isVisible = false;
+  double _fontSize = 18;
+  bool _isBold = false;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -144,24 +148,56 @@ class _CreateNotesScreenState extends State<CreateNotesScreen> {
                                                 Padding(
                                                   padding: getPadding(left:5,),
                                                   child: SizedBox(
-                                                    height: 651,
+                                                    height: 650,
                                                     child: TextField(
                                                         controller: _noteContent,
                                                         keyboardType: TextInputType.multiline,
                                                         maxLines: null,
-                                                        style: AppStyle.txtSourceSansProRegular175,
+                                                        style:TextStyle(
+                                                          fontWeight: _isBold?FontWeight.bold : FontWeight.normal,
+                                                          fontSize: _fontSize,
+                                                        ),
                                                       decoration: InputDecoration(
                                                         hintText: "Type your Text Here",
                                                         border: InputBorder.none,
-                                                        focusedBorder: InputBorder.none,
-                                                        enabledBorder: InputBorder.none,
-                                                        errorBorder: InputBorder.none,
-                                                        disabledBorder: InputBorder.none,
                                                       ),
                                                     ),
                                                   ),
                                                 ),
                                               ]),
+                                        ),
+                                        //RESIZE TEXT WIDGET
+                                        Align(
+                                          alignment: Alignment.bottomCenter,
+                                          child: Visibility(
+                                            visible: _isVisible,
+                                            child: Container(
+                                              height: 150,
+                                              padding: getPadding(
+                                                  left: 17,
+                                                  top: 6,
+                                                  right: 17,
+                                                  bottom: 6),
+                                              decoration: AppDecoration
+                                                  .outlineSliderTeal,
+                                              child: Column(
+                                                children: [
+                                                  Text('Font Size: ${_fontSize.round()}',
+                                                  style: AppStyle.txtBoogalooRegular28,),
+                                                  Slider(value: _fontSize,
+                                                      min:18.0,
+                                                      max: 35.0,
+                                                      onChanged: (newValue){
+                                                        setState(() {
+                                                          _fontSize = newValue;
+                                                        });
+                                                      },
+                                                      activeColor: ColorConstant.teal900,
+                                                      ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
                                         ),
                                         Container(
                                           child: Row(
@@ -170,18 +206,20 @@ class _CreateNotesScreenState extends State<CreateNotesScreen> {
                                                   alignment: Alignment.bottomRight,
                                                   child: GestureDetector(
                                                       onTap: () {
-                                                        onTapImgCamone(context);
+                                                        setState(() {
+                                                          _isBold = !_isBold;
+                                                        });
                                                       },
                                                       child: CustomImageView(
                                                         imagePath: ImageConstant.imgLists1,
-                                                        height: getSize(65),
-                                                        width: getSize(65),
+                                                        height: getSize(35),
+                                                        width: getSize(20),
                                                         alignment: Alignment.bottomLeft,
-                                                        margin: getMargin(top:800,left: 20),
+                                                        margin: getMargin(left: 45, bottom: 2),
                                                       ))
                                               ),
                                               Align(
-                                                  alignment: Alignment.bottomRight,
+                                                  alignment: Alignment.bottomCenter,
                                                   child: GestureDetector(
                                                       onTap: () {
                                                         onTapImgListsone(context);
@@ -190,27 +228,27 @@ class _CreateNotesScreenState extends State<CreateNotesScreen> {
                                                         imagePath: ImageConstant.imgCam1,
                                                         height: getSize(50),
                                                         width: getSize(50),
-                                                        alignment: Alignment.bottomCenter,
                                                         margin: getMargin(top:805,left: 90),
                                                       ))
                                               ),
                                               Align(
-                                                  alignment: Alignment.bottomRight,
+                                                  alignment: Alignment.bottomLeft,
                                                   child: GestureDetector(
                                                       onTap: () {
-                                                        onTapTxtAa(context);
+                                                        setState(() {
+                                                          _isVisible = !_isVisible;
+                                                        });
                                                       },
                                                       child: CustomImageView(
                                                         imagePath: ImageConstant.imgAa,
                                                         height: getSize(40),
                                                         width: getSize(40),
-                                                        alignment: Alignment.bottomLeft,
-                                                        margin: getMargin(top:800,left: 110),
-                                                      ))
+                                                        margin: getMargin(top:805,left: 110),
+                                                      )
+                                                  )
                                               ),
                                             ],
                                           ),
-
                                         )
 
                                       ])
@@ -225,7 +263,6 @@ class _CreateNotesScreenState extends State<CreateNotesScreen> {
       _selectedDateTime = current;
     });
   }
-
   Widget _buildPopupDialog(BuildContext context) {
     return new AlertDialog(
       title: const Text('Notes'),
@@ -262,10 +299,6 @@ class _CreateNotesScreenState extends State<CreateNotesScreen> {
     await FirebaseFirestore.instance.collection('users').doc(currentUserName).collection('userNotes').add(addNotes);
     showDialog(context: context, builder: (BuildContext context) => _buildPopupDialog(context));
     Navigator.pushNamed(context, AppRoutes.notesDisplayScreen);
-  }
-
-  onTapTxtAa(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.resizeTextScreen);
   }
 
   onTapImgListsone(BuildContext context) {
