@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import '../notes_display_screen/widgets/notes_display_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:travelogue_app/core/app_export.dart';
@@ -25,7 +27,7 @@ class NotesDisplayScreen extends StatelessWidget {
                           child:
                               Stack(alignment: Alignment.topCenter, children: [
                             Align(
-                                alignment: Alignment.center,
+                                alignment: Alignment.topCenter,
                                 child: Padding(
                                     padding: getPadding(left: 16, right: 17),
                                     child: Column(
@@ -104,29 +106,6 @@ class NotesDisplayScreen extends StatelessWidget {
                                                                       )
                                                                     ]))))
                                                   ])),
-                                          Expanded(
-                                              child: Padding(
-                                                  padding: getPadding(top: 8),
-                                                  child: GridView.builder(
-                                                      shrinkWrap: true,
-                                                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                                                          mainAxisExtent:
-                                                              getVerticalSize(
-                                                                  214),
-                                                          crossAxisCount: 2,
-                                                          mainAxisSpacing:
-                                                              getHorizontalSize(
-                                                                  38),
-                                                          crossAxisSpacing:
-                                                              getHorizontalSize(
-                                                                  38)),
-                                                      physics:
-                                                          BouncingScrollPhysics(),
-                                                      itemCount: 6,
-                                                      itemBuilder:
-                                                          (context, index) {
-                                                        return NotesDisplayItemWidget();
-                                                      })))
                                         ]))),
                             CustomImageView(
                                 imagePath: ImageConstant.imgNavigationbar,
@@ -142,7 +121,26 @@ class NotesDisplayScreen extends StatelessWidget {
                                 onTap: () {
                                   onTapImgProfile(context);
                                 })
-                          ])))
+                          ]))),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  StreamBuilder<QuerySnapshot>(
+                    stream: FirebaseFirestore.instance.collection('users').snapshots(),
+                    builder: (context, AsyncSnapshot snapshot){
+                      if(snapshot.connectionState == ConnectionState.waiting){
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                      if (snapshot.hasData){
+                        return GridView(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2));
+                      }
+
+                      return Text("There's no Note",);
+                    },
+                  )
                 ]))));
   }
 

@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:travelogue_app/core/app_export.dart';
 
+String userID = 'Initial Value';
+
 class SignUpScreen extends StatefulWidget {
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();
@@ -236,7 +238,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     width: getHorizontalSize(132),
                                     alignment: Alignment.topRight,
                                     margin: getMargin(top: 20, right: 53),
-                                    onTap: () {
+                                    onTap: () async {
                                       Map<String, String> addUser={
                                         "email": _emailController.text,
                                         "firstName": _firstnameController.text,
@@ -244,7 +246,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         "userName": _usernameController.text,
                                         "userPass": _passwordController.text,
                                       };
-                                      FirebaseFirestore.instance.collection('users').add(addUser);
+                                      DocumentReference documentReference = await FirebaseFirestore.instance.collection('users').add(addUser);
+                                      userID = documentReference.id;
                                       showDialog(context: context, builder: (BuildContext context) => _buildPopupDialog(context));
                                     })
                               ]))

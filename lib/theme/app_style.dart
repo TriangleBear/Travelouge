@@ -199,4 +199,11 @@ class AppStyle {
     fontFamily: 'Source Sans Pro',
     fontWeight: FontWeight.w700,
   );
+  static TextStyle txtSourceSansProEditing = TextStyle(
+    color: ColorConstant.teal900,
+    fontSize: getFontSize(
+      21,
+    ),
+    fontFamily: 'Source Sans Pro',
+  );
 }
