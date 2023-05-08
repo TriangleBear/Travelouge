@@ -122,25 +122,6 @@ class NotesDisplayScreen extends StatelessWidget {
                                   onTapImgProfile(context);
                                 })
                           ]))),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  StreamBuilder<QuerySnapshot>(
-                    stream: FirebaseFirestore.instance.collection('users').snapshots(),
-                    builder: (context, AsyncSnapshot snapshot){
-                      if(snapshot.connectionState == ConnectionState.waiting){
-                        return Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      }
-                      if (snapshot.hasData){
-                        return GridView(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2));
-                      }
-
-                      return Text("There's no Note",);
-                    },
-                  )
                 ]))));
   }
 
