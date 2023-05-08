@@ -1,5 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:travelogue_app/core/app_export.dart';
+import 'package:travelogue_app/presentation/login_screen/login_screen.dart';
+import 'package:travelogue_app/presentation/sign_up_screen/sign_up_screen.dart';
 import 'package:travelogue_app/widgets/app_bar/appbar_image.dart';
 import 'package:travelogue_app/widgets/app_bar/custom_app_bar.dart';
 
@@ -21,7 +24,7 @@ class _CreateNotesScreenState extends State<CreateNotesScreen> {
             body: Container(
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                  image: AssetImage("assets/images/img_WaveBackground.png"),
+                  image: AssetImage(ImageConstant.imgWavesBackground),
                   fit:BoxFit.cover,)
                 ),
                 child: Column(
@@ -200,12 +203,41 @@ class _CreateNotesScreenState extends State<CreateNotesScreen> {
 
             )));
   }
+  Widget _buildPopupDialog(BuildContext context) {
+    return new AlertDialog(
+      title: const Text('Notes'),
+      content: new Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text("Successfully Added!"),
+        ],
+      ),
+      actions: <Widget>[
+        new ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+            Navigator.pushNamed(context, AppRoutes.notesDisplayScreen);
+          },
+          child: const Text('Close'),
+        ),
+      ],
+    );
+  }
 
   onTapBackbutton(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.notesDisplayScreen);
   }
 
-  onTapSavebutton(BuildContext context) {
+  onTapSavebutton(BuildContext context) async {
+    Map<String, String> addNotes={
+      "noteContent": _noteContent.text,
+      "noteDate": _noteDate.text,
+      "noteTitle": _noteTitle.text,
+      "userName": currentUserName,
+    };
+    await FirebaseFirestore.instance.collection('users').doc(currentUserName).collection('userNotes').add(addNotes);
+    showDialog(context: context, builder: (BuildContext context) => _buildPopupDialog(context));
     Navigator.pushNamed(context, AppRoutes.notesDisplayScreen);
   }
 

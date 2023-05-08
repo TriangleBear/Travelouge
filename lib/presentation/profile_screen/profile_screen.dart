@@ -9,14 +9,14 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  final CollectionReference _users = FirebaseFirestore.instance.collection('users');
+  final CollectionReference _users = FirebaseFirestore.instance.collection('users').doc(currentUserName).collection('userNotes');
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
             backgroundColor: ColorConstant.teal100,
             body: StreamBuilder(
-              stream: FirebaseFirestore.instance.collection('users').where('userName', isEqualTo: currentUserName).snapshots(),
+              stream: _users.where('userName', isEqualTo: currentUserName).snapshots(),
               builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot){
                 if(streamSnapshot.hasData){
                   return ListView.builder(
@@ -227,7 +227,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
         ));
   }
-
   onTapImgArrow(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.notesDisplayScreen);
   }

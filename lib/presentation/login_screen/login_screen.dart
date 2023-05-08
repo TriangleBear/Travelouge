@@ -2,7 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:travelogue_app/core/app_export.dart';
 
-String currentUserName = 'Initial Value';
+String currentUserName = '';
+
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -169,7 +170,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void onTapImgLoginbutton(BuildContext context) async {
     final QuerySnapshot = await FirebaseFirestore.instance.collection('users').where('userName', isEqualTo: _usernameController.text).get();
-
+    currentUserName = _usernameController.text;
     if(QuerySnapshot.docs.isNotEmpty){
       final userDoc = QuerySnapshot.docs.first;
       final userPass = userDoc.get('userPass');
