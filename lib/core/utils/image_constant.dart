@@ -95,5 +95,9 @@ class ImageConstant {
 
   static String imgToggle = 'assets/images/img_toggle.svg';
 
+  static String imgWavesBackground = 'assets/images/img_WaveBackground.PNG';
+
+  static String imgAa = 'assets/images/imgAa.png';
+
   static String imageNotFound = 'assets/images/image_not_found.png';
 }
