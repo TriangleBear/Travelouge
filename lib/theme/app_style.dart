@@ -143,6 +143,14 @@ class AppStyle {
     fontFamily: 'Source Sans Pro',
     fontWeight: FontWeight.w400,
   );
+  static TextStyle txtSourceSansProRegularupdate = TextStyle(
+    color: ColorConstant.black900,
+    fontSize: getFontSize(
+      17.5,
+    ),
+    fontFamily: 'Source Sans Pro',
+    fontWeight: FontWeight.w400,
+  );
 
   static TextStyle txtSourceSansProBold175 = TextStyle(
     color: ColorConstant.black900,
