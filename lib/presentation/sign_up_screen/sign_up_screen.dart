@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:travelogue_app/core/app_export.dart';
 
-import '../login_screen/login_screen.dart';
+
 
 class SignUpScreen extends StatefulWidget {
   @override
@@ -246,8 +246,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         "userName": _usernameController.text,
                                         "userPass": _passwordController.text,
                                       };
-                                      FirebaseFirestore.instance.collection('users').doc(currentUserName).id;
-                                      await FirebaseFirestore.instance.collection('users').add(addUser);
+                                      Map<String, Map<String, String>> addUserRefNotes={
+                                        "userNotes":{
+                                          "userName": _usernameController.text,
+                                        }
+                                      };
+                                      FirebaseFirestore.instance.collection('users').doc(_usernameController.text).id;
+                                      await FirebaseFirestore.instance.collection('users').doc(_usernameController.text).set(addUser);
                                       showDialog(context: context, builder: (BuildContext context) => _buildPopupDialog(context));
                                     })
                               ]))
@@ -255,7 +260,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ])))));
 
   }
-
   Widget _buildPopupDialog(BuildContext context) {
     return new AlertDialog(
       title: const Text('Popup example'),
@@ -277,10 +281,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       ],
     );
   }
-  void incrementation(int x){
-    var x = 1;
-    x++;
-  }
+
 
 
   onTapImgLogin(BuildContext context) {
