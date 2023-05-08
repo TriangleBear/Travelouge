@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cupertino_date_textbox/cupertino_date_textbox.dart';
 import 'package:flutter/material.dart';
 import 'package:travelogue_app/core/app_export.dart';
 import 'package:travelogue_app/presentation/login_screen/login_screen.dart';
@@ -15,6 +16,8 @@ class _CreateNotesScreenState extends State<CreateNotesScreen> {
   TextEditingController _noteTitle = TextEditingController();
   TextEditingController _noteContent = TextEditingController();
   TextEditingController _noteDate = TextEditingController();
+  DateTime _selectedDateTime = DateTime.now();
+  DateTime currentDate = DateTime.now();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -133,14 +136,8 @@ class _CreateNotesScreenState extends State<CreateNotesScreen> {
                                                   padding: getPadding(top:5,left:5,),
                                                   child: SizedBox(
                                                     height: 30,
-                                                    child: TextField(
-                                                        controller: _noteDate,
-                                                        style: AppStyle.txtBoogalooRegular28,
-                                                      decoration: InputDecoration(
-                                                        hintText: "Date",
-                                                        hintStyle: AppStyle.hintBoogalooRegular28,
-                                                        border: InputBorder.none,
-                                                      ),
+                                                    child: CupertinoDateTextBox(
+                                                      initialValue: _selectedDateTime, onDateChange: onDateChangeCallBack, hintText: 'Date',
                                                     ),
                                                   ),
                                                 ),
@@ -222,6 +219,13 @@ class _CreateNotesScreenState extends State<CreateNotesScreen> {
 
             )));
   }
+
+  void onDateChangeCallBack(DateTime current){
+    setState(() {
+      _selectedDateTime = current;
+    });
+  }
+
   Widget _buildPopupDialog(BuildContext context) {
     return new AlertDialog(
       title: const Text('Notes'),
