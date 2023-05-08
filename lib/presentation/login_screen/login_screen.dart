@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:travelogue_app/core/app_export.dart';
 
+String currentUserName = 'Initial Value';
+
 class LoginScreen extends StatefulWidget {
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -12,6 +14,7 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController _usernameController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   bool _showPassword = true; // initial value of obscureText
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -66,9 +69,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                   child: SizedBox(
                                     height: 34.0,
                                     width: 300.0,
+
                                     child: TextField(
                                       obscureText: false,
                                       controller: _usernameController,
+                                      onChanged: (value){
+                                        currentUserName = value;
+                                      },
                                       decoration: InputDecoration(
                                           fillColor: Color(0xff4c9c9e),
                                           filled: true,
@@ -143,7 +150,7 @@ class _LoginScreenState extends State<LoginScreen> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text("Wrong user or pass"),
+          Text("Wrong user or password"),
         ],
       ),
       actions: <Widget>[
@@ -161,17 +168,17 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void onTapImgLoginbutton(BuildContext context) async {
-    final querySnapshot = await FirebaseFirestore.instance.collection('users').where('userName', isEqualTo: _usernameController.text).get();
+    final QuerySnapshot = await FirebaseFirestore.instance.collection('users').where('userName', isEqualTo: _usernameController.text).get();
 
-    if(querySnapshot.docs.isNotEmpty){
-      final userDoc = querySnapshot.docs.first;
+    if(QuerySnapshot.docs.isNotEmpty){
+      final userDoc = QuerySnapshot.docs.first;
       final userPass = userDoc.get('userPass');
 
       if(userPass != _passwordController.text){
         _buildPopupDialogError(context);
       } else {
         print('Successfully Logged in');
-        Navigator.pushNamed(context, AppRoutes.notesDisplayScreen);
+        Navigator.pushNamed(context,  AppRoutes.notesDisplayScreen);
       }
     } else {
       _buildPopupDialogError(context);
