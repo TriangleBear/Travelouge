@@ -13,7 +13,7 @@ dependencies:
   intl: ^0.17.0
   firebase_core: ^2.11.0
   cloud_firestore: ^4.6.0
-  cupertino_date_textbox: ^1.0.1
+  date_time_picker: ^2.1.0
 dev_dependencies: 
   flutter_test: 
     sdk: flutter
