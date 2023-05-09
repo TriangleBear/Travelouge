@@ -26,6 +26,10 @@ class AppDecoration {
           ),
         ),
       );
+
+  static BoxDecoration get outlineSliderTeal => BoxDecoration(
+    color: ColorConstant.deepOrange100,
+  );
   static BoxDecoration get outlineTeal300 => BoxDecoration(
         color: ColorConstant.deepOrange100,
         border: Border.all(

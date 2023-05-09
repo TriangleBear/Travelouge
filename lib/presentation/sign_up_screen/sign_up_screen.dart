@@ -1,13 +1,28 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:travelogue_app/core/app_export.dart';
 
-class SignUpScreen extends StatelessWidget {
+
+
+class SignUpScreen extends StatefulWidget {
+  @override
+  State<SignUpScreen> createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
+  TextEditingController _firstnameController = TextEditingController();
+  TextEditingController _lastnameController = TextEditingController();
+  TextEditingController _usernameController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+  bool _showPassword = true; // initial value of obscureText
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
             backgroundColor: ColorConstant.deepOrange100,
-            body: Container(
+            body: SingleChildScrollView(
+            child:Container(
                 width: double.maxFinite,
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -33,122 +48,173 @@ class SignUpScreen extends StatelessWidget {
                           alignment: Alignment.centerRight,
                           margin: getMargin(top: 6)),
                       Container(
-                          height: getVerticalSize(61),
-                          width: getHorizontalSize(284),
-                          margin: getMargin(top: 25),
-                          child: Stack(alignment: Alignment.topLeft, children: [
-                            Align(
-                                alignment: Alignment.bottomCenter,
-                                child: Container(
-                                    height: getVerticalSize(34),
-                                    width: getHorizontalSize(284),
-                                    decoration: BoxDecoration(
-                                        color: ColorConstant.teal300,
-                                        borderRadius: BorderRadius.circular(
-                                            getHorizontalSize(9))))),
-                            Align(
-                                alignment: Alignment.topLeft,
-                                child: Text("First Name",
-                                    overflow: TextOverflow.ellipsis,
-                                    textAlign: TextAlign.left,
-                                    style: AppStyle.txtSourceSansProSemiBold23))
-                          ])),
-                      Container(
-                          height: getVerticalSize(58),
-                          width: getHorizontalSize(284),
-                          margin: getMargin(top: 16),
-                          child: Stack(alignment: Alignment.topLeft, children: [
-                            Align(
-                                alignment: Alignment.bottomCenter,
-                                child: Container(
-                                    height: getVerticalSize(34),
-                                    width: getHorizontalSize(284),
-                                    decoration: BoxDecoration(
-                                        color: ColorConstant.teal300,
-                                        borderRadius: BorderRadius.circular(
-                                            getHorizontalSize(9))))),
-                            Align(
-                                alignment: Alignment.topLeft,
-                                child: Text("Last Name",
-                                    overflow: TextOverflow.ellipsis,
-                                    textAlign: TextAlign.left,
-                                    style: AppStyle.txtSourceSansProSemiBold23))
-                          ])),
-                      Container(
-                          height: getVerticalSize(58),
-                          width: getHorizontalSize(284),
-                          margin: getMargin(top: 16),
-                          child: Stack(alignment: Alignment.topLeft, children: [
-                            Align(
-                                alignment: Alignment.bottomCenter,
-                                child: Container(
-                                    height: getVerticalSize(34),
-                                    width: getHorizontalSize(284),
-                                    decoration: BoxDecoration(
-                                        color: ColorConstant.teal300,
-                                        borderRadius: BorderRadius.circular(
-                                            getHorizontalSize(9))))),
-                            Align(
-                                alignment: Alignment.topLeft,
-                                child: Text("Username",
-                                    overflow: TextOverflow.ellipsis,
-                                    textAlign: TextAlign.left,
-                                    style: AppStyle.txtSourceSansProSemiBold23))
-                          ])),
-                      Container(
-                          height: getVerticalSize(61),
-                          width: getHorizontalSize(284),
-                          margin: getMargin(top: 13),
-                          child: Stack(alignment: Alignment.topLeft, children: [
-                            Align(
-                                alignment: Alignment.bottomCenter,
-                                child: Container(
-                                    height: getVerticalSize(34),
-                                    width: getHorizontalSize(284),
-                                    decoration: BoxDecoration(
-                                        color: ColorConstant.teal300,
-                                        borderRadius: BorderRadius.circular(
-                                            getHorizontalSize(9))))),
-                            Align(
-                                alignment: Alignment.topLeft,
-                                child: Text("Email",
-                                    overflow: TextOverflow.ellipsis,
-                                    textAlign: TextAlign.left,
-                                    style: AppStyle.txtSourceSansProSemiBold23))
-                          ])),
-                      Container(
-                          height: getVerticalSize(59),
-                          width: getHorizontalSize(288),
-                          margin: getMargin(top: 15),
-                          child: Stack(
-                              alignment: Alignment.bottomRight,
+                          margin: getMargin(left: 35, right: 37, top:10),
+                          child:  Column(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.end,
                               children: [
+                                //First name input box
                                 Align(
-                                    alignment: Alignment.bottomCenter,
-                                    child: Container(
-                                        height: getVerticalSize(34),
-                                        width: getHorizontalSize(284),
-                                        decoration: BoxDecoration(
-                                            color: ColorConstant.teal300,
-                                            borderRadius: BorderRadius.circular(
-                                                getHorizontalSize(9))))),
-                                CustomImageView(
-                                    imagePath: ImageConstant.imgBlueeyes1,
-                                    height: getVerticalSize(33),
-                                    width: getHorizontalSize(57),
-                                    alignment: Alignment.bottomRight),
+                                    alignment: Alignment.centerLeft,
+                                    child: Padding(
+                                        padding: getPadding(left: 18),
+                                        child: Text("First Name",
+                                            overflow: TextOverflow.ellipsis,
+                                            textAlign: TextAlign.left,
+                                            style: AppStyle
+                                                .txtSourceSansProSemiBold23))),
+                                Padding(
+                                  padding: const EdgeInsets.all(6.0),
+                                  child: SizedBox(
+                                    height: 35.0,
+                                    width: 300.0,
+                                    child: TextField(
+                                      obscureText: false,
+                                      controller: _firstnameController,
+                                      decoration: InputDecoration(
+                                          fillColor: Color(0xff4c9c9e),
+                                          filled: true,
+                                          border: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(getHorizontalSize(9)),
+                                            borderSide: BorderSide.none, // Removes the border color
+                                          )
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                //Last Name input Box
                                 Align(
-                                    alignment: Alignment.topLeft,
-                                    child: Text("Password",
-                                        overflow: TextOverflow.ellipsis,
-                                        textAlign: TextAlign.left,
-                                        style: AppStyle
-                                            .txtSourceSansProSemiBold23))
-                              ])),
+                                    alignment: Alignment.centerLeft,
+                                    child: Padding(
+                                        padding: getPadding(left: 18),
+                                        child: Text("Last Name",
+                                            overflow: TextOverflow.ellipsis,
+                                            textAlign: TextAlign.left,
+                                            style: AppStyle
+                                                .txtSourceSansProSemiBold23))),
+                                Padding(
+                                  padding: const EdgeInsets.all(6.0),
+                                  child: SizedBox(
+                                    height: 35.0,
+                                    width: 300.0,
+                                    child: TextField(
+                                      obscureText: false,
+                                      controller: _lastnameController,
+                                      decoration: InputDecoration(
+                                          fillColor: Color(0xff4c9c9e),
+                                          filled: true,
+                                          border: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(getHorizontalSize(9)),
+                                            borderSide: BorderSide.none, // Removes the border color
+                                          )
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                // Username input Box
+                                Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Padding(
+                                        padding: getPadding(left: 18),
+                                        child: Text("Username",
+                                            overflow: TextOverflow.ellipsis,
+                                            textAlign: TextAlign.left,
+                                            style: AppStyle
+                                                .txtSourceSansProSemiBold23))),
+                                Padding(
+                                  padding: const EdgeInsets.all(6.0),
+                                  child: SizedBox(
+                                    height: 35.0,
+                                    width: 300.0,
+                                    child: TextField(
+                                      obscureText: false,
+                                      controller: _usernameController,
+                                      decoration: InputDecoration(
+                                          fillColor: Color(0xff4c9c9e),
+                                          filled: true,
+                                          border: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(getHorizontalSize(9)),
+                                            borderSide: BorderSide.none, // Removes the border color
+                                          )
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                // Email input Box
+                                Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Padding(
+                                        padding: getPadding(left: 18),
+                                        child: Text("Email",
+                                            overflow: TextOverflow.ellipsis,
+                                            textAlign: TextAlign.left,
+                                            style: AppStyle
+                                                .txtSourceSansProSemiBold23))),
+                                Padding(
+                                  padding: const EdgeInsets.all(6.0),
+                                  child: SizedBox(
+                                    height: 35.0,
+                                    width: 300.0,
+                                    child: TextField(
+                                      obscureText: false,
+                                      controller: _emailController,
+                                      decoration: InputDecoration(
+                                          fillColor: Color(0xff4c9c9e),
+                                          filled: true,
+                                          border: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(getHorizontalSize(9)),
+                                            borderSide: BorderSide.none, // Removes the border color
+                                          )
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                // Email input Box
+                                Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Padding(
+                                        padding: getPadding(left: 18),
+                                        child: Text("Password",
+                                            overflow: TextOverflow.ellipsis,
+                                            textAlign: TextAlign.left,
+                                            style: AppStyle
+                                                .txtSourceSansProSemiBold23))),
+                                Padding(
+                                  padding: const EdgeInsets.all(6.0),
+                                  child: SizedBox(
+                                    height: 35.0,
+                                    width: 300.0,
+                                    child: TextField(
+                                      obscureText: _showPassword,
+                                      controller: _passwordController,
+                                      decoration: InputDecoration(
+                                          suffixIcon: IconButton(
+                                            icon: Icon(
+                                              _showPassword ? Icons.visibility_off : Icons.visibility,
+                                              color: Colors.white,
+                                            ),
+                                            onPressed: () {
+                                              setState(() {
+                                                _showPassword = !_showPassword; // toggle the value
+                                              });},
+                                          ),
+                                          fillColor: Color(0xff4c9c9e),
+                                          filled: true,
+                                          border: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(getHorizontalSize(9)),
+                                            borderSide: BorderSide.none, // Removes the border color
+                                          )
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                          ])),
+
+
                       Container(
                           height: getVerticalSize(185),
                           width: double.maxFinite,
-                          margin: getMargin(top: 23),
+                          margin: getMargin(top:6),
                           child: Stack(
                               alignment: Alignment.centerRight,
                               children: [
@@ -172,22 +238,61 @@ class SignUpScreen extends StatelessWidget {
                                     width: getHorizontalSize(132),
                                     alignment: Alignment.topRight,
                                     margin: getMargin(top: 20, right: 53),
-                                    onTap: () {
-                                      onTapImgSignupbutton(context);
+                                    onTap: () async {
+                                      Map<String, String> addUser={
+                                        "email": _emailController.text,
+                                        "firstName": _firstnameController.text,
+                                        "lastName": _lastnameController.text,
+                                        "userName": _usernameController.text,
+                                        "userPass": _passwordController.text,
+                                      };
+                                      Map<String, Map<String, String>> addUserRefNotes={
+                                        "userNotes":{
+                                          "userName": _usernameController.text,
+                                        }
+                                      };
+                                      FirebaseFirestore.instance.collection('users').doc(_usernameController.text).id;
+                                      await FirebaseFirestore.instance.collection('users').doc(_usernameController.text).set(addUser);
+                                      showDialog(context: context, builder: (BuildContext context) => _buildPopupDialog(context));
                                     })
                               ]))
-                    ]))));
+
+                    ])))));
+
   }
+  Widget _buildPopupDialog(BuildContext context) {
+    return new AlertDialog(
+      backgroundColor: ColorConstant.deepOrange100,
+      title: const Text('Welcome to Travelogue!'),
+      content: new Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text("Signup Successful"),
+        ],
+      ),
+      actions: <Widget>[
+        new ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+            Navigator.pushNamed(context, AppRoutes.loginScreen);
+          },
+          child: const Text('Close'),
+          style: ElevatedButton.styleFrom(
+            primary: Colors.teal,
+          ),
+        ),
+      ],
+    );
+  }
+
+
 
   onTapImgLogin(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.loginScreen);
   }
-
-  onTapImgRecog(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.recogSignUpOneScreen);
-  }
-
-  onTapImgSignupbutton(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.notesDisplayScreen);
+  void onTapImgSignupbutton() async {
+    Navigator.pushNamed(context, AppRoutes.appNavigationScreen);
   }
 }
+

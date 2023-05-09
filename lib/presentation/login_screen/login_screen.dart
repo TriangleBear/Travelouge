@@ -1,16 +1,28 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:travelogue_app/core/app_export.dart';
 
-class LoginScreen extends StatelessWidget {
+String currentUserName = '';
+
+
+class LoginScreen extends StatefulWidget {
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+class _LoginScreenState extends State<LoginScreen> {
+  TextEditingController _usernameController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+  bool _showPassword = true; // initial value of obscureText
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-            backgroundColor: ColorConstant.teal100,
-            body: Container(
-                width: double.maxFinite,
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
+        backgroundColor: ColorConstant.teal100,
+        body: SingleChildScrollView(
+        child: Container(
+        width: double.maxFinite,
+        child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       CustomImageView(
                           imagePath: ImageConstant.imgTravelogue,
@@ -44,40 +56,80 @@ class LoginScreen extends StatelessWidget {
                                 Align(
                                     alignment: Alignment.centerLeft,
                                     child: Padding(
-                                        padding: getPadding(left: 18, top: 34),
+                                        padding: getPadding(left: 18, top: 20),
                                         child: Text("Enter Username",
                                             overflow: TextOverflow.ellipsis,
                                             textAlign: TextAlign.left,
                                             style: AppStyle
                                                 .txtSourceSansProSemiBold21))),
-                                Container(
-                                    height: getVerticalSize(34),
-                                    width: getHorizontalSize(284),
-                                    decoration: BoxDecoration(
-                                        color: ColorConstant.teal300,
-                                        borderRadius: BorderRadius.circular(
-                                            getHorizontalSize(9)))),
+                                Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: SizedBox(
+                                    height: 34.0,
+                                    width: 300.0,
+
+                                    child: TextField(
+                                      obscureText: false,
+                                      controller: _usernameController,
+                                      onChanged: (value){
+                                        currentUserName = value;
+                                      },
+                                      decoration: InputDecoration(
+                                          fillColor: Color(0xff4c9c9e),
+                                          filled: true,
+                                          border: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(getHorizontalSize(9)),
+                                            borderSide: BorderSide.none, // Removes the border color
+                                          )
+                                      ),
+                                    ),
+                                  ),
+                                ),
+
                                 Align(
                                     alignment: Alignment.centerLeft,
                                     child: Padding(
-                                        padding: getPadding(left: 18, top: 34),
+                                        padding: getPadding(left: 18, top: 20),
                                         child: Text("Enter Password",
                                             overflow: TextOverflow.ellipsis,
                                             textAlign: TextAlign.left,
                                             style: AppStyle
                                                 .txtSourceSansProSemiBold21))),
-                                Container(
-                                    height: getVerticalSize(35),
-                                    width: getHorizontalSize(284),
-                                    decoration: BoxDecoration(
-                                        color: ColorConstant.teal300,
-                                        borderRadius: BorderRadius.circular(
-                                            getHorizontalSize(9)))),
+                                Padding(
+                                  padding: const EdgeInsets.all(8),
+                                  child: SizedBox(
+                                    height: 34.0,
+                                    width: 300.0,
+                                    child: TextField(
+                                      obscureText: _showPassword,
+                                      controller: _passwordController,
+                                      decoration: InputDecoration(
+                                          suffixIcon: IconButton(
+                                            icon: Icon(
+                                              _showPassword ? Icons.visibility_off : Icons.visibility,
+                                              color: Colors.white,
+                                            ),
+                                            onPressed: () {
+                                              setState(() {
+                                                _showPassword = !_showPassword; // toggle the value
+                                              });},
+                                          ),
+                                          fillColor: Color(0xff4c9c9e),
+                                          filled: true,
+                                          border: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(getHorizontalSize(9)),
+                                            borderSide: BorderSide.none, // Removes the border color
+                                          )
+                                      ),
+
+                                    ),
+                                  ),
+                                ),
                                 CustomImageView(
                                     imagePath: ImageConstant.imgLoginbutton,
                                     height: getVerticalSize(26),
                                     width: getHorizontalSize(114),
-                                    margin: getMargin(top: 35, bottom: 35),
+                                    margin: getMargin(top: 20, bottom: 20),
                                     onTap: () {
                                       onTapImgLoginbutton(context);
                                     }),
@@ -87,14 +139,51 @@ class LoginScreen extends StatelessWidget {
                           height: getVerticalSize(226),
                           width: getHorizontalSize(360),
                           margin:getMargin(top: 20))
-                    ]))));
+                    ])))));
   }
-
+  Widget _buildPopupDialogError(BuildContext context) {
+    return new AlertDialog(
+      title: const Text('Error'),
+      content: new Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text("Wrong user or password"),
+        ],
+      ),
+      actions: <Widget>[
+        new ElevatedButton(
+          onPressed: () {
+            Navigator.pushNamed(context, AppRoutes.loginScreen);
+          },
+          child: const Text('Close'),
+        ),
+      ],
+    );
+  }
   onTapImgSignup(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.signUpScreen);
   }
 
-  onTapImgLoginbutton(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.notesDisplayScreen);
+  void onTapImgLoginbutton(BuildContext context) async {
+    final querySnapshot = await FirebaseFirestore.instance.collection('users').where('userName', isEqualTo: _usernameController.text).get();
+    currentUserName = _usernameController.text;
+    if(querySnapshot.docs.isNotEmpty){
+      final userDoc = querySnapshot.docs.first;
+      final userPass = userDoc.get('userPass');
+
+      if(userPass != _passwordController.text){
+        _buildPopupDialogError(context);
+      } else {
+        print('Successfully Logged in');
+        Navigator.pushNamed(context,  AppRoutes.notesDisplayScreen);
+      }
+    } else {
+      _buildPopupDialogError(context);
+    }
+
+
   }
+
+
 }

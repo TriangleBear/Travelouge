@@ -10,6 +10,46 @@ class AppStyle {
     fontFamily: 'Boogaloo',
     fontWeight: FontWeight.w400,
   );
+  static TextStyle txtTitleDisplay = TextStyle(
+    color: ColorConstant.teal900,
+    fontSize: getFontSize(
+      22,
+    ),
+    fontFamily: 'Boogaloo',
+    fontWeight: FontWeight.w400,
+  );
+  static TextStyle txtDateDisplay = TextStyle(
+    color: ColorConstant.black900,
+    fontSize: getFontSize(
+      20,
+    ),
+    fontFamily: 'Boogaloo',
+    fontWeight: FontWeight.w400,
+  );
+  static TextStyle txtNoteDisplay = TextStyle(
+    color: ColorConstant.black900,
+    fontSize: getFontSize(
+      18,
+    ),
+    fontFamily: 'Roboto',
+    fontWeight: FontWeight.w400,
+  );
+  static TextStyle hintBoogalooRegular40 = TextStyle(
+    color: ColorConstant.teal700,
+    fontSize: getFontSize(
+      40,
+    ),
+    fontFamily: 'Boogaloo',
+    fontWeight: FontWeight.w400,
+  );
+  static TextStyle hintBoogalooRegular28 = TextStyle(
+    color: ColorConstant.teal700,
+    fontSize: getFontSize(
+      28,
+    ),
+    fontFamily: 'Boogaloo',
+    fontWeight: FontWeight.w400,
+  );
 
   static TextStyle txtBoogalooRegular30 = TextStyle(
     color: ColorConstant.teal900,
@@ -127,6 +167,14 @@ class AppStyle {
     fontFamily: 'Source Sans Pro',
     fontWeight: FontWeight.w400,
   );
+  static TextStyle txtSourceSansProRegularupdate = TextStyle(
+    color: ColorConstant.black900,
+    fontSize: getFontSize(
+      17.5,
+    ),
+    fontFamily: 'Source Sans Pro',
+    fontWeight: FontWeight.w400,
+  );
 
   static TextStyle txtSourceSansProBold175 = TextStyle(
     color: ColorConstant.black900,
@@ -198,5 +246,12 @@ class AppStyle {
     ),
     fontFamily: 'Source Sans Pro',
     fontWeight: FontWeight.w700,
+  );
+  static TextStyle txtSourceSansProEditing = TextStyle(
+    color: ColorConstant.teal900,
+    fontSize: getFontSize(
+      21,
+    ),
+    fontFamily: 'Source Sans Pro',
   );
 }
