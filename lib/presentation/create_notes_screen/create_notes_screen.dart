@@ -1,10 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:cupertino_date_textbox/cupertino_date_textbox.dart';
+import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/single_child_widget.dart';
 import 'package:travelogue_app/core/app_export.dart';
 import 'package:travelogue_app/presentation/login_screen/login_screen.dart';
-import 'package:travelogue_app/presentation/sign_up_screen/sign_up_screen.dart';
 import 'package:travelogue_app/widgets/app_bar/appbar_image.dart';
 import 'package:travelogue_app/widgets/app_bar/custom_app_bar.dart';
 
@@ -16,7 +14,7 @@ class CreateNotesScreen extends StatefulWidget {
 class _CreateNotesScreenState extends State<CreateNotesScreen> {
   TextEditingController _noteTitle = TextEditingController();
   TextEditingController _noteContent = TextEditingController();
-  TextEditingController _noteDate = TextEditingController();
+  //TextEditingController _noteDate = TextEditingController();
   DateTime _selectedDateTime = DateTime.now();
   DateTime currentDate = DateTime.now();
   bool _isVisible = false;
@@ -140,9 +138,13 @@ class _CreateNotesScreenState extends State<CreateNotesScreen> {
                                                   padding: getPadding(top:5,left:5,),
                                                   child: SizedBox(
                                                     height: 30,
-                                                    child: CupertinoDateTextBox(
-                                                      initialValue: _selectedDateTime, onDateChange: onDateChangeCallBack, hintText: 'Date',
-                                                    ),
+                                                    child: DateTimePicker(
+                                                      type: DateTimePickerType.date,
+                                                      initialValue: '$currentDate',
+                                                      dateLabelText: 'Date',
+                                                      onChanged: (value) => onDateChangeCallBack,
+                                                      onSaved: (newValue) => _selectedDateTime,
+                                                    )
                                                   ),
                                                 ),
                                                 Padding(
@@ -290,11 +292,12 @@ class _CreateNotesScreenState extends State<CreateNotesScreen> {
   }
 
   onTapSavebutton(BuildContext context) async {
-    Map<String, String> addNotes={
+    Map<String, dynamic> addNotes={
       "noteContent": _noteContent.text,
-      "noteDate": _noteDate.text,
+      "noteDate": _selectedDateTime.toString(),
       "noteTitle": _noteTitle.text,
-      "userName": currentUserName,
+      "isNoteBold": _isBold,
+      "noteFontSize": _fontSize,
     };
     await FirebaseFirestore.instance.collection('users').doc(currentUserName).collection('userNotes').add(addNotes);
     showDialog(context: context, builder: (BuildContext context) => _buildPopupDialog(context));
