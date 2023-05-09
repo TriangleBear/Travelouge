@@ -166,10 +166,10 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void onTapImgLoginbutton(BuildContext context) async {
-    final QuerySnapshot = await FirebaseFirestore.instance.collection('users').where('userName', isEqualTo: _usernameController.text).get();
+    final querySnapshot = await FirebaseFirestore.instance.collection('users').where('userName', isEqualTo: _usernameController.text).get();
     currentUserName = _usernameController.text;
-    if(QuerySnapshot.docs.isNotEmpty){
-      final userDoc = QuerySnapshot.docs.first;
+    if(querySnapshot.docs.isNotEmpty){
+      final userDoc = querySnapshot.docs.first;
       final userPass = userDoc.get('userPass');
 
       if(userPass != _passwordController.text){
