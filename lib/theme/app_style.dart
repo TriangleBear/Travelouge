@@ -10,6 +10,30 @@ class AppStyle {
     fontFamily: 'Boogaloo',
     fontWeight: FontWeight.w400,
   );
+  static TextStyle txtTitleDisplay = TextStyle(
+    color: ColorConstant.teal900,
+    fontSize: getFontSize(
+      22,
+    ),
+    fontFamily: 'Boogaloo',
+    fontWeight: FontWeight.w400,
+  );
+  static TextStyle txtDateDisplay = TextStyle(
+    color: ColorConstant.black900,
+    fontSize: getFontSize(
+      20,
+    ),
+    fontFamily: 'Boogaloo',
+    fontWeight: FontWeight.w400,
+  );
+  static TextStyle txtNoteDisplay = TextStyle(
+    color: ColorConstant.black900,
+    fontSize: getFontSize(
+      18,
+    ),
+    fontFamily: 'Roboto',
+    fontWeight: FontWeight.w400,
+  );
   static TextStyle hintBoogalooRegular40 = TextStyle(
     color: ColorConstant.teal700,
     fontSize: getFontSize(

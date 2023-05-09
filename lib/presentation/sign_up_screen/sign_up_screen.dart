@@ -262,7 +262,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
   Widget _buildPopupDialog(BuildContext context) {
     return new AlertDialog(
-      title: const Text('Popup example'),
+      backgroundColor: ColorConstant.deepOrange100,
+      title: const Text('Welcome to Travelogue!'),
       content: new Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -277,6 +278,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
             Navigator.pushNamed(context, AppRoutes.loginScreen);
           },
           child: const Text('Close'),
+          style: ElevatedButton.styleFrom(
+            primary: Colors.teal,
+          ),
         ),
       ],
     );

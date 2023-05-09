@@ -216,10 +216,7 @@ class UploadPhotoScreen extends StatelessWidget {
                                                                   159),
                                                           margin: getMargin(
                                                               top: 13),
-                                                          onTap: () {
-                                                            onTapImgUploadbutton(
-                                                                context);
-                                                          }),
+                                                      ),
                                                       CustomImageView(
                                                           imagePath:
                                                               ImageConstant
@@ -300,9 +297,5 @@ class UploadPhotoScreen extends StatelessWidget {
 
   onTapImgExit(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.createNotesScreen);
-  }
-
-  onTapImgUploadbutton(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.uploadPhotoTwoScreen);
   }
 }

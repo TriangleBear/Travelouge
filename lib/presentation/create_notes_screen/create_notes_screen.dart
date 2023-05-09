@@ -135,13 +135,12 @@ class _CreateNotesScreenState extends State<CreateNotesScreen> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: getPadding(top:5,left:5,),
+                                                  padding: getPadding(left:5),
                                                   child: SizedBox(
                                                     height: 30,
                                                     child: DateTimePicker(
                                                       type: DateTimePickerType.date,
                                                       initialValue: '$currentDate',
-                                                      dateLabelText: 'Date',
                                                       firstDate: DateTime.now(),
                                                       lastDate: DateTime(2050),
                                                       onChanged: (value) {
@@ -155,6 +154,7 @@ class _CreateNotesScreenState extends State<CreateNotesScreen> {
                                                         print('${day.toString().padLeft(2, '0')}/${month.toString().padLeft(2, '0')}/$year');
                                                       },
                                                       onSaved: (newValue) => _selectedDateTime = DateTime.parse(_selectedDateTime.toString()),
+                                                      style: AppStyle.hintBoogalooRegular28,
                                                     )
                                                   ),
                                                 ),
@@ -235,7 +235,7 @@ class _CreateNotesScreenState extends State<CreateNotesScreen> {
                                                   alignment: Alignment.bottomCenter,
                                                   child: GestureDetector(
                                                       onTap: () {
-                                                        onTapImgListsone(context);
+                                                        onTapImgCamone(context);
                                                       },
                                                       child: CustomImageView(
                                                         imagePath: ImageConstant.imgCam1,
@@ -313,10 +313,6 @@ class _CreateNotesScreenState extends State<CreateNotesScreen> {
     await FirebaseFirestore.instance.collection('users').doc(currentUserName).collection('userNotes').add(addNotes);
     showDialog(context: context, builder: (BuildContext context) => _buildPopupDialog(context));
     Navigator.pushNamed(context, AppRoutes.notesDisplayScreen);
-  }
-
-  onTapImgListsone(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.addBulletsScreen);
   }
 
   onTapImgCamone(BuildContext context) {
