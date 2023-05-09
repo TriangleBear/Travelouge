@@ -1,3 +1,6 @@
+import 'dart:js_util';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +23,7 @@ class _CreateNotesScreenState extends State<CreateNotesScreen> {
   bool _isVisible = false;
   double _fontSize = 18;
   bool _isBold = false;
+  String _actualDate = '';
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -145,15 +149,9 @@ class _CreateNotesScreenState extends State<CreateNotesScreen> {
                                                       lastDate: DateTime(2050),
                                                       onChanged: (value) {
                                                         // Extract day, month, and year values
-                                                        DateTime selectedDate = DateTime.parse(value);
-                                                        int day = selectedDate.day;
-                                                        int month = selectedDate.month;
-                                                        int year = selectedDate.year;
-
-                                                        // Print selected date in desired format
-                                                        print('${day.toString().padLeft(2, '0')}/${month.toString().padLeft(2, '0')}/$year');
+                                                        _selectedDateTime = DateTime.parse(value);
                                                       },
-                                                      onSaved: (newValue) => _selectedDateTime = DateTime.parse(_selectedDateTime.toString()),
+                                                      onSaved: (newValue) => _selectedDateTime = DateTime.parse(_dateActual(_selectedDateTime.day, _selectedDateTime.month, _selectedDateTime.year).toString()),
                                                       style: AppStyle.hintBoogalooRegular28,
                                                     )
                                                   ),
@@ -275,6 +273,19 @@ class _CreateNotesScreenState extends State<CreateNotesScreen> {
     setState(() {
       _selectedDateTime = current;
     });
+  }
+  String _dateActual(int day, int month, int year){
+
+    // Print selected date in desired format
+    int day = _selectedDateTime.day;
+    int month = _selectedDateTime.month;
+    int year = _selectedDateTime.year;
+    int _day = day.toString().padLeft(2, '0') as int;
+    int _month = month.toString().padLeft(2, '0') as int;
+    int _year = year;
+    String actualDATE = '$_day/$_month/$_year';
+    //actualDate = _actualDate.toString();
+    return actualDATE;
   }
   Widget _buildPopupDialog(BuildContext context) {
     return new AlertDialog(

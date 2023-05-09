@@ -1,9 +1,19 @@
+import 'dart:io';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:travelogue_app/core/app_export.dart';
+import 'package:travelogue_app/presentation/login_screen/login_screen.dart';
 import 'package:travelogue_app/widgets/app_bar/appbar_image.dart';
 import 'package:travelogue_app/widgets/app_bar/custom_app_bar.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
+
+// ignore: must_be_immutable
 class UploadPhotoScreen extends StatelessWidget {
+  DocumentReference<Map<String, dynamic>> _ref = FirebaseFirestore.instance.collection('users').doc(currentUserName).collection('userNotes').doc(currentUserName);
+  String imageUrl = '';
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -206,6 +216,12 @@ class UploadPhotoScreen extends StatelessWidget {
                                                                             ]))
                                                                   ]))),
                                                       CustomImageView(
+                                                        onTap: () async{
+                                                          Map<String, String> dataToSend={
+                                                            'imgURL': imageUrl,
+                                                          };
+                                                          _ref.update(dataToSend);
+                                                        },
                                                           imagePath: ImageConstant
                                                               .imgUploadbutton,
                                                           height:
@@ -218,6 +234,9 @@ class UploadPhotoScreen extends StatelessWidget {
                                                               top: 13),
                                                       ),
                                                       CustomImageView(
+                                                          onTap: () {
+                                                            onTapCamera(context);
+                                                          },
                                                           imagePath:
                                                               ImageConstant
                                                                   .imgCam1,
@@ -297,5 +316,24 @@ class UploadPhotoScreen extends StatelessWidget {
 
   onTapImgExit(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.createNotesScreen);
+  }
+
+  void onTapCamera(BuildContext context) async{
+    ImagePicker imagepicker = ImagePicker();
+    XFile? file = await imagepicker.pickImage(source: ImageSource.camera);
+    print('${file?.path}');
+
+
+    String uniqueFileName = DateTime.now().millisecondsSinceEpoch.toString();
+
+    Reference refRoot = FirebaseStorage.instance.ref();
+    Reference refDirImgs = refRoot.child('images');
+
+    Reference refImgToUpload = refDirImgs.child(uniqueFileName);
+
+    await refImgToUpload.putFile(File(file!.path));
+
+    imageUrl = await refImgToUpload.getDownloadURL();
+
   }
 }

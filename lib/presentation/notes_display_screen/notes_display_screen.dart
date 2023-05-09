@@ -171,7 +171,6 @@ class NotesDisplayScreen extends StatelessWidget {
   }
 
 
-
   onTapNew(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.createNotesScreen);
   }
