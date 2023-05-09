@@ -142,8 +142,19 @@ class _CreateNotesScreenState extends State<CreateNotesScreen> {
                                                       type: DateTimePickerType.date,
                                                       initialValue: '$currentDate',
                                                       dateLabelText: 'Date',
-                                                      onChanged: (value) => onDateChangeCallBack,
-                                                      onSaved: (newValue) => _selectedDateTime,
+                                                      firstDate: DateTime.now(),
+                                                      lastDate: DateTime(2050),
+                                                      onChanged: (value) {
+                                                        // Extract day, month, and year values
+                                                        DateTime selectedDate = DateTime.parse(value);
+                                                        int day = selectedDate.day;
+                                                        int month = selectedDate.month;
+                                                        int year = selectedDate.year;
+
+                                                        // Print selected date in desired format
+                                                        print('${day.toString().padLeft(2, '0')}/${month.toString().padLeft(2, '0')}/$year');
+                                                      },
+                                                      onSaved: (newValue) => _selectedDateTime = DateTime.parse(_selectedDateTime.toString()),
                                                     )
                                                   ),
                                                 ),
