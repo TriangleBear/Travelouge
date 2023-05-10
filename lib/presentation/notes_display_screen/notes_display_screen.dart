@@ -64,14 +64,43 @@ class NotesDisplayScreen extends StatelessWidget {
                                       margin: EdgeInsets.all(10),
                                       height: 200,
                                       color: ColorConstant.deepOrange100,
-                                      child: Column(
-                                        children: [
-                                          Text(documentSnapshot['noteTitle'], style: AppStyle.txtTitleDisplay),
-                                          Text(documentSnapshot['noteDate'], style: AppStyle.txtDateDisplay,),
-                                          Text(documentSnapshot['noteContent'], style: AppStyle.txtNoteDisplay,),
-                                        ],
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start, // align children to the left
+                                          children: [
+                                            Align(
+                                              alignment: Alignment.centerLeft,
+                                              child: Text(
+                                                documentSnapshot['noteTitle'],
+                                                style: AppStyle.txtTitleDisplay,
+                                                overflow: TextOverflow.ellipsis,
+                                                maxLines: 1,
+                                              ),
+                                            ),
+                                            Align(
+                                              alignment: Alignment.centerLeft,
+                                              child: Text(
+                                                documentSnapshot['noteDate'],
+                                                style: AppStyle.txtDateDisplay,
+                                                overflow: TextOverflow.ellipsis,
+                                                maxLines: 1,
+                                              ),
+                                            ),
+                                            Align(
+                                              alignment: Alignment.centerLeft,
+                                              child: Text(
+                                                documentSnapshot['noteContent'],
+                                                style: AppStyle.txtNoteDisplay,
+                                                overflow: TextOverflow.ellipsis,
+                                                maxLines: 5,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
+
                                   );
                                   },
 

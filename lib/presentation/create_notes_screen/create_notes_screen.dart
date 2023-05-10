@@ -140,7 +140,10 @@ class _CreateNotesScreenState extends State<CreateNotesScreen> {
                                                   padding: getPadding(left:5),
                                                   child: SizedBox(
                                                     height: 30,
-                                                    child: DateTimePicker(
+                                                    child: Theme(
+                                                      data: ThemeData(colorScheme: ColorScheme.light(
+                                                        primary: Colors.teal),
+                                                    ), child: DateTimePicker(
                                                       type: DateTimePickerType.date,
                                                       initialValue: '$currentDate',
                                                       firstDate: DateTime.now(),
@@ -151,6 +154,7 @@ class _CreateNotesScreenState extends State<CreateNotesScreen> {
                                                       },
                                                       onSaved: (newValue) => _selectedDateTime = DateTime.parse(_dateActual(_selectedDateTime.day, _selectedDateTime.month, _selectedDateTime.year).toString()),
                                                       style: AppStyle.hintBoogalooRegular28,
+                                                    ),
                                                     )
                                                   ),
                                                 ),
@@ -237,7 +241,7 @@ class _CreateNotesScreenState extends State<CreateNotesScreen> {
                                                         imagePath: ImageConstant.imgCam1,
                                                         height: getSize(50),
                                                         width: getSize(50),
-                                                        margin: getMargin(top:805,left: 90),
+                                                        margin: getMargin(top:805,left: 105),
                                                       ))
                                               ),
                                               Align(
@@ -252,7 +256,7 @@ class _CreateNotesScreenState extends State<CreateNotesScreen> {
                                                         imagePath: ImageConstant.imgAa,
                                                         height: getSize(40),
                                                         width: getSize(40),
-                                                        margin: getMargin(top:805,left: 110),
+                                                        margin: getMargin(top:805,left: 105),
                                                       )
                                                   )
                                               ),
